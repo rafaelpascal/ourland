@@ -1,4 +1,5 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 interface FormState {
@@ -34,27 +35,109 @@ interface InputFieldProps {
 
 // ── Data ───────────────────────────────────────────────────────────────────────
 const NIGERIAN_STATES: string[] = [
-  "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue",
-  "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu",
-  "FCT - Abuja", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina",
-  "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo",
-  "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara",
+  "Abia",
+  "Adamawa",
+  "Akwa Ibom",
+  "Anambra",
+  "Bauchi",
+  "Bayelsa",
+  "Benue",
+  "Borno",
+  "Cross River",
+  "Delta",
+  "Ebonyi",
+  "Edo",
+  "Ekiti",
+  "Enugu",
+  "FCT - Abuja",
+  "Gombe",
+  "Imo",
+  "Jigawa",
+  "Kaduna",
+  "Kano",
+  "Katsina",
+  "Kebbi",
+  "Kogi",
+  "Kwara",
+  "Lagos",
+  "Nasarawa",
+  "Niger",
+  "Ogun",
+  "Ondo",
+  "Osun",
+  "Oyo",
+  "Plateau",
+  "Rivers",
+  "Sokoto",
+  "Taraba",
+  "Yobe",
+  "Zamfara",
 ];
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
 const CoatOfArms = () => (
-  <svg viewBox="0 0 120 140" className="w-16 h-20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    viewBox="0 0 120 140"
+    className="w-16 h-20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <ellipse cx="60" cy="70" rx="50" ry="60" fill="#008751" opacity="0.15" />
-    <path d="M60 20 L90 50 L90 90 Q60 110 30 90 L30 50 Z" fill="#008751" stroke="#006400" strokeWidth="1.5" />
-    <path d="M45 65 L55 75 L75 55" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="60" cy="25" r="8" fill="#FFD700" stroke="#B8860B" strokeWidth="1" />
-    <text x="60" y="29" textAnchor="middle" fontSize="8" fill="#006400" fontWeight="bold">★</text>
+    <path
+      d="M60 20 L90 50 L90 90 Q60 110 30 90 L30 50 Z"
+      fill="#008751"
+      stroke="#006400"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M45 65 L55 75 L75 55"
+      stroke="white"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle
+      cx="60"
+      cy="25"
+      r="8"
+      fill="#FFD700"
+      stroke="#B8860B"
+      strokeWidth="1"
+    />
+    <text
+      x="60"
+      y="29"
+      textAnchor="middle"
+      fontSize="8"
+      fill="#006400"
+      fontWeight="bold"
+    >
+      ★
+    </text>
     <rect x="35" y="95" width="50" height="8" rx="2" fill="#008751" />
-    <text x="60" y="101.5" textAnchor="middle" fontSize="5" fill="white" fontWeight="bold" letterSpacing="0.5">
+    <text
+      x="60"
+      y="101.5"
+      textAnchor="middle"
+      fontSize="5"
+      fill="white"
+      fontWeight="bold"
+      letterSpacing="0.5"
+    >
       FEDERAL REPUBLIC
     </text>
-    <path d="M25 85 Q20 75 22 65 Q24 55 30 50" stroke="#006400" strokeWidth="2" fill="none" />
-    <path d="M95 85 Q100 75 98 65 Q96 55 90 50" stroke="#006400" strokeWidth="2" fill="none" />
+    <path
+      d="M25 85 Q20 75 22 65 Q24 55 30 50"
+      stroke="#006400"
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M95 85 Q100 75 98 65 Q96 55 90 50"
+      stroke="#006400"
+      strokeWidth="2"
+      fill="none"
+    />
     <circle cx="22" cy="62" r="5" fill="#FFD700" />
     <circle cx="98" cy="62" r="5" fill="#FFD700" />
   </svg>
@@ -109,7 +192,9 @@ export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ): void => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
@@ -121,9 +206,12 @@ export default function App() {
     const newErrors: FormErrors = {};
     if (!form.firstName.trim()) newErrors.firstName = "First name is required";
     if (!form.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!form.nyscCertNo.trim()) newErrors.nyscCertNo = "NYSC Discharge Certificate Number is required";
-    if (!form.votersCardNo.trim()) newErrors.votersCardNo = "Voters Card Number is required";
-    if (!form.stateOfResidence) newErrors.stateOfResidence = "Please select your state";
+    if (!form.nyscCertNo.trim())
+      newErrors.nyscCertNo = "NYSC Discharge Certificate Number is required";
+    if (!form.votersCardNo.trim())
+      newErrors.votersCardNo = "Voters Card Number is required";
+    if (!form.stateOfResidence)
+      newErrors.stateOfResidence = "Please select your state";
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       newErrors.email = "Valid email address required";
     }
@@ -156,8 +244,18 @@ export default function App() {
       <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-emerald-900 to-green-800 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-2xl p-10 max-w-md w-full text-center">
           <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg className="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-10 h-10 text-emerald-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           </div>
           <h2
@@ -166,16 +264,21 @@ export default function App() {
           >
             Submission Successful
           </h2>
-          <p className="text-gray-500 text-sm mb-2">Your information has been received and recorded.</p>
+          <p className="text-gray-500 text-sm mb-2">
+            Your information has been received and recorded.
+          </p>
           <p className="text-gray-400 text-xs mb-6">
-            Reference ID: NGV-{Math.random().toString(36).substring(2, 10).toUpperCase()}
+            Reference ID: NGV-
+            {Math.random().toString(36).substring(2, 10).toUpperCase()}
           </p>
           <div className="bg-emerald-50 rounded-lg p-4 text-left text-xs text-emerald-800 space-y-1 mb-6">
             <p>
-              <span className="font-semibold">Name:</span> {form.firstName} {form.lastName}
+              <span className="font-semibold">Name:</span> {form.firstName}{" "}
+              {form.lastName}
             </p>
             <p>
-              <span className="font-semibold">State:</span> {form.stateOfResidence}
+              <span className="font-semibold">State:</span>{" "}
+              {form.stateOfResidence}
             </p>
             <p>
               <span className="font-semibold">Email:</span> {form.email}
@@ -227,8 +330,8 @@ export default function App() {
             National Citizens Data Registration Portal
           </h1>
           <p className="text-emerald-300 text-xs max-w-md mx-auto leading-relaxed">
-            Authorized by the Federal Ministry of Interior • All information is protected under the
-            Nigeria Data Protection Act
+            Authorized by the Federal Ministry of Interior • All information is
+            protected under the Nigeria Data Protection Act
           </p>
           <div className="flex items-center justify-center gap-3 mt-3">
             <span className="h-px w-16 bg-emerald-600/50" />
@@ -254,7 +357,8 @@ export default function App() {
                   Personal Information
                 </h2>
                 <p className="text-gray-400 text-xs mt-1">
-                  All fields marked with <span className="text-red-500">*</span> are required
+                  All fields marked with <span className="text-red-500">*</span>{" "}
+                  are required
                 </p>
               </div>
 
@@ -273,7 +377,9 @@ export default function App() {
                         icon="👤"
                       />
                       {errors.firstName && (
-                        <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.firstName}
+                        </p>
                       )}
                     </div>
                     <div>
@@ -286,7 +392,9 @@ export default function App() {
                         required
                       />
                       {errors.lastName && (
-                        <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.lastName}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -303,7 +411,9 @@ export default function App() {
                       icon="📋"
                     />
                     {errors.nyscCertNo && (
-                      <p className="text-red-500 text-xs mt-1">{errors.nyscCertNo}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.nyscCertNo}
+                      </p>
                     )}
                   </div>
 
@@ -319,7 +429,9 @@ export default function App() {
                       icon="🗳️"
                     />
                     {errors.votersCardNo && (
-                      <p className="text-red-500 text-xs mt-1">{errors.votersCardNo}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.votersCardNo}
+                      </p>
                     )}
                   </div>
 
@@ -351,7 +463,9 @@ export default function App() {
                       </span>
                     </div>
                     {errors.stateOfResidence && (
-                      <p className="text-red-500 text-xs mt-1">{errors.stateOfResidence}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.stateOfResidence}
+                      </p>
                     )}
                   </div>
 
@@ -368,7 +482,9 @@ export default function App() {
                       icon="✉️"
                     />
                     {errors.email && (
-                      <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
 
@@ -385,7 +501,9 @@ export default function App() {
                       icon="📱"
                     />
                     {errors.whatsapp && (
-                      <p className="text-red-500 text-xs mt-1">{errors.whatsapp}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.whatsapp}
+                      </p>
                     )}
                     <p className="text-gray-400 text-xs mt-1">
                       Enter Nigerian number (e.g. 08012345678 or +2348012345678)
@@ -395,13 +513,19 @@ export default function App() {
                   {/* Disclaimer */}
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                     <div className="flex gap-3">
-                      <span className="text-amber-500 text-lg flex-shrink-0">⚠️</span>
+                      <span className="text-amber-500 text-lg flex-shrink-0">
+                        ⚠️
+                      </span>
                       <p className="text-amber-800 text-xs leading-relaxed">
-                        By submitting this form, you confirm that all information provided is
-                        accurate and truthful. Provision of false or misleading information is an
-                        offence punishable under Federal law. Your data will be handled in
-                        accordance with the{" "}
-                        <strong>Nigeria Data Protection Regulation (NDPR)</strong>.
+                        By submitting this form, you confirm that all
+                        information provided is accurate and truthful. Provision
+                        of false or misleading information is an offence
+                        punishable under Federal law. Your data will be handled
+                        in accordance with the{" "}
+                        <strong>
+                          Nigeria Data Protection Regulation (NDPR)
+                        </strong>
+                        .
                       </p>
                     </div>
                   </div>
@@ -445,13 +569,18 @@ export default function App() {
 
             {/* Card Footer */}
             <div className="bg-emerald-950/5 border-t border-emerald-100 px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-              <p className="text-gray-400 text-xs">🔒 256-bit SSL Encrypted • Secure Government Portal</p>
-              <p className="text-gray-400 text-xs">© {new Date().getFullYear()} Federal Republic of Nigeria</p>
+              <p className="text-gray-400 text-xs">
+                🔒 256-bit SSL Encrypted • Secure Government Portal
+              </p>
+              <p className="text-gray-400 text-xs">
+                © {new Date().getFullYear()} Federal Republic of Nigeria
+              </p>
             </div>
           </div>
 
           <p className="text-center text-emerald-400/60 text-xs mt-4">
-            For technical support, contact: support@gov.ng | Helpline: 0800-NIGERIA
+            For technical support, contact: support@gov.ng | Helpline:
+            0800-NIGERIA
           </p>
         </div>
       </div>
