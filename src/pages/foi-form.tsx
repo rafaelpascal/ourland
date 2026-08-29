@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 
-// ── Types ──────────────────────────────────────────────────────────────────────
 interface FormState {
   firstName: string;
   lastName: string;
@@ -33,7 +32,6 @@ interface InputFieldProps {
   icon?: string;
 }
 
-// ── Data ───────────────────────────────────────────────────────────────────────
 const NIGERIAN_STATES: string[] = [
   "Abia",
   "Adamawa",
@@ -176,7 +174,6 @@ const InputField = ({
   </div>
 );
 
-// ── Main App ───────────────────────────────────────────────────────────────────
 export default function App() {
   const [form, setForm] = useState<FormState>({
     firstName: "",

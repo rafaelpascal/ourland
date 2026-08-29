@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
 
-// ── Types ──────────────────────────────────────────────────────────────
 interface Institution {
   icon: string;
   name: string;
@@ -829,11 +828,15 @@ function Contact() {
             Every voice strengthens our collective demand for change.
           </p>
           {[
-            { icon: "✉️", label: "Email Us", value: "info@foinigeria.org.ng" },
+            {
+              icon: "✉️",
+              label: "Email Us",
+              value: "save.our.land.ng@gmail.com",
+            },
             {
               icon: "📱",
               label: "WhatsApp Hotline",
-              value: "+234 800 FOI NIGERIA",
+              value: "+234 8053280920",
             },
             {
               icon: "📍",
